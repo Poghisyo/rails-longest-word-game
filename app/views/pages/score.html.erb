@@ -1,0 +1,17 @@
+<h1>Your Score</h1>
+<p>your word:</p>
+<%= @attempt %>
+<p>your time(s):</p>
+<%= @end_time - @start_time%>
+
+
+<p>check word and calculate score:</p>
+<%= @results[:message] %>
+<p>current score:</p>
+<%= @results[:score] %>
+<p>total running score</p>
+<%= session[:score] %>
+<p>number of plays:</p>
+<%= session[:plays] %>
+
+<p> <%= link_to 'Play Again?', '/game' %></p>
