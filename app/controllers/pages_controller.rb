@@ -1,15 +1,18 @@
 require 'open-uri'
 
 class PagesController < ApplicationController
+  def new
+    reset_session
+  end
+
+
   def game
     generate_grid(10)
     @start_time = Time.now
-
   end
 
 
   def score
-
     @attempt = params[:attempt]
     @start_time = Time.parse(params[:start_time])
     @end_time = Time.now
@@ -27,8 +30,6 @@ class PagesController < ApplicationController
     else
       session[:plays] += 1
     end
-
-
   end
 
   private
@@ -44,8 +45,8 @@ class PagesController < ApplicationController
     result = {}
     result[:message] = "well done"
     time_taken = (end_time.to_i - start_time.to_i) # .to_i
-    result[:time] = time_taken
-    score = (time_taken * -1) + attempt.length
+    result[:time] = time_taken / 1000
+    score = (attempt.length ** attempt.length) - time_taken
     result[:score] = score
     return check_word(result, attempt, grid)
   end

@@ -1,18 +1,42 @@
-<h1>Welcome to the longest word game</h1>
-<p>the rules are: blah blah blah</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="body-container text-center">
 
 
-<p>here is your grid:</p>
-<%= @grid.join(' ')  %>
 
-<p>What's your best shot?</p>
 
-<form action="/score">
-  <label for="question">what is your attempt?</label>
-  <input type="text" id="question" name="attempt" placeholder="your attempt?">
-  <input type="hidden" value= "<%= @grid.join(' ') %>" name="grid">
-  <input type="hidden" value= "<%= @start_time %>" name="start_time">
-  <input type="submit" value="Go on!">
-</form>
-<p>start time: <%= @start_time %></p>
+        <h1>Welcome to the longest word game</h1>
+
+        <div class="rules">
+          <p>the rules are: blah blah blah</p>
+        </div>
+
+        <h3>Your session running score:</h3>
+
+        <div class="session-score">
+          <p>number of games: <%= session[:plays] %></p>
+          <p>running score: <%= session[:score] %></p>
+        </div>
+
+        <div class="grid">
+          <p>here is your grid:</p>
+          <%= @grid.join(' ')  %>
+        </div>
+
+        <p>What's your best shot?</p>
+
+        <form action="/score" method='get'>
+          <label for="question">what is your attempt?</label>
+          <input type="text" id="question" name="attempt" placeholder="your attempt?">
+          <input type="hidden" value= "<%= @grid.join(' ') %>" name="grid">
+          <input type="hidden" value= "<%= @start_time %>" name="start_time">
+          <input type="submit" value="Go on!">
+        </form>
+
+        <%= link_to 'exit session', new_path, class: 'btn btn-danger'  %>
+      </div>
+    </div>
+  </div>
+</div>
 
